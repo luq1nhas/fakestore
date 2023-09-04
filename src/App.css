@@ -1,38 +1,75 @@
 .App {
   text-align: center;
+  font-family: Arial, sans-serif;
+  margin: 20px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.produto-lista {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-wrap: wrap;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  gap: 20px;
 }
 
-.App-link {
-  color: #61dafb;
+.produto-card {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+  width: 300px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.produto-card h3{
+  display: -webkit-box;
+  -webkit-line-clamp: 1; 
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.produto-card img {
+  max-width: 100%;
+  height: auto;
+}
+
+button {
+  color: rgb(0, 0, 0);
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.modal {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal-content {
+  background-color: white;
+  width: 70%;
+  max-width: 600px;
+  margin: 100px auto;
+  padding: 20px;
+  position: relative;
+  text-align: center;
+}
+
+.fechar {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.nav-espaco{
+  padding: 20px;
+  background-color: #edb024;
+  display: flex;
+  justify-content: center;
+  font-size: larger;
+  font-weight: bold;
 }

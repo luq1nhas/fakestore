@@ -1,24 +1,58 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import "./App.css";
 
 function App() {
+  const [produtos, setProdutos] = useState([]);
+  const [produtoSelecionado, setprodutoSelecionado] = useState(null);
+
+  useEffect(() => {
+    axios.get("https://fakestoreapi.com/products").then((response) => {
+      setProdutos(response.data);
+    });
+  }, []);
+
+  const abrirModal = (produto) => {
+    setprodutoSelecionado(produto);
+  };
+
+  const fecharModal = () => {
+    setprodutoSelecionado(null);
+  };
+
   return (
+  <>
+    <nav className="navbar bg-body-tertiary nav-espaco">
+        <div className="container-fluid">
+          <span className="navbar-brand">Loja Virtual</span>
+        </div>
+      </nav>
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="produto-lista">
+        {produtos.map((product) => (
+          <div className="produto-card" key={product.id}>
+            <img src={product.image} alt={product.title} />
+            <h3>{product.title}</h3>
+            <p>Preço: ${product.price}</p>
+            <button onClick={() => abrirModal(product)}>Ver Detalhes</button>
+          </div>
+        ))}
+      </div>
+
+      {produtoSelecionado && (
+        <div className="modal">
+          <div className="modal-content">
+            <span className="fechar" onClick={fecharModal}>
+              &times;
+            </span>
+            <h2>{produtoSelecionado.title}</h2>
+            <p>Descrição: {produtoSelecionado.description}</p>
+            <p>Preço: ${produtoSelecionado.price}</p>
+          </div>
+        </div>
+      )}
     </div>
+    </>
   );
 }
 
